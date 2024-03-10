@@ -15,3 +15,29 @@ export const createNote = async (title, text) => {
         console.error(error)
     }
 }
+
+export const getNotes = async() => {
+    try {
+        const {data, error} = await supabase
+            .from('notes')
+            .select('*')
+        return data
+        
+    } catch (error) {
+        console.error(error)
+    }
+}
+// async function getNotes() {
+//     try {
+//         const {data, error} = await supabase
+//             .from('notes')
+//             .select('*')
+
+//         if (error) throw error;
+//         if (data != null) {
+//             setNotes(data)
+//         }
+//     } catch (error) {
+//         alert(error)
+//     }
+//   }
