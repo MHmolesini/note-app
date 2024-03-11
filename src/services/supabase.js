@@ -5,6 +5,26 @@ export const supabase = createClient(
     import.meta.env.VITE_SUPABASE_ANON_KEY
 )
 
+// Database
+const tableNotes = 'notes'
+const tableProducts = 'products'
+
+// export const fetchProducts = async() => {
+//     const {data, error} = await supabase    
+//         .from(tableProducts)
+//         .select('*')
+
+//     if(error) {
+//         console.error('Error al obtener datos', error)
+//         return
+//     }
+
+//     console.log('Datos obtenidos', data)
+
+//     // Llama a la funcion fetchProducts para recuperar datos 
+//     return data
+// }
+
 export const createNote = async (title, text) => {
     try {
         const {data, error} = await supabase
@@ -20,13 +40,16 @@ export const getNotes = async() => {
     try {
         const {data, error} = await supabase
             .from('notes')
-            .select('*')
+            .select('title, text')
+
+        console.log('data from SB', data)
         return data
-        
+
     } catch (error) {
         console.error(error)
     }
 }
+
 // async function getNotes() {
 //     try {
 //         const {data, error} = await supabase
